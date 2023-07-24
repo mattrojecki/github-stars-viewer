@@ -9,7 +9,10 @@
     "lint": "next lint",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write",
     "lint-staged": "lint-staged",
-    "prepare-husky": "husky install"
+    "prepare-husky": "husky install",
+    "docker-clean-up": "docker compose --env-file ./.env -f ./docker-compose.yaml down -v && docker image rm github-stars-viewer:dev",
+    "docker-start-dev": "docker compose --env-file ./.env -f ./docker-compose.yaml up --build",
+    "docker-reload": "npm run docker-clean-up && npm run docker-start-dev"
   },
   "dependencies": {
     "next": "13.4.12",

@@ -1,0 +1,17 @@
+
+version: '3.8'
+name: github-stars-viewer
+services:
+  web:
+    build:
+      context: ./
+      target: runner
+    container_name: next-app-dev
+    image: github-stars-viewer:dev
+    volumes:
+      - .:/app
+    command: npm run dev
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
