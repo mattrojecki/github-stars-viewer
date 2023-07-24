@@ -1,0 +1,20 @@
+query GetReactRepositories {
+  search(
+    type: REPOSITORY
+    query: "is:public stars:>10000 topic:react"
+    first: 10
+  ) {
+    repositoryCount
+    edges {
+      node {
+        ... on Repository {
+          id
+          name
+          url
+          stargazerCount
+          forkCount
+        }
+      }
+    }
+  }
+}

@@ -12,14 +12,22 @@
     "prepare-husky": "husky install",
     "docker-clean-up": "docker compose --env-file ./.env -f ./docker-compose.yaml down -v && docker image rm github-stars-viewer:dev",
     "docker-start-dev": "docker compose --env-file ./.env -f ./docker-compose.yaml up --build",
-    "docker-reload": "npm run docker-clean-up && npm run docker-start-dev"
+    "docker-reload": "npm run docker-clean-up && npm run docker-start-dev",
+    "graphql-codegen": "graphql-codegen --config graphql-codegen.ts"
   },
   "dependencies": {
+    "@apollo/client": "^3.7.17",
+    "graphql": "^16.7.1",
     "next": "13.4.12",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^4.0.1",
+    "@graphql-codegen/client-preset": "^4.0.1",
+    "@graphql-codegen/typescript": "^4.0.1",
+    "@graphql-codegen/typescript-operations": "^4.0.1",
+    "@graphql-codegen/typescript-react-apollo": "^3.3.7",
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
