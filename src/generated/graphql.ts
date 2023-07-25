@@ -29663,7 +29663,7 @@ export enum WorkflowState {
 export type GetReactRepositoriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetReactRepositoriesQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', repositoryCount: number, edges?: Array<{ __typename?: 'SearchResultItemEdge', node?: { __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', stargazerCount: number, id: string, name: string, url: any } | { __typename?: 'User' } | null } | null> | null } };
+export type GetReactRepositoriesQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', repositoryCount: number, edges?: Array<{ __typename?: 'SearchResultItemEdge', node?: { __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, name: string, url: any, stargazerCount: number, forkCount: number } | { __typename?: 'User' } | null } | null> | null } };
 
 
 export const GetReactRepositoriesDocument = gql`
@@ -29673,10 +29673,11 @@ export const GetReactRepositoriesDocument = gql`
     edges {
       node {
         ... on Repository {
-          stargazerCount
           id
           name
           url
+          stargazerCount
+          forkCount
         }
       }
     }

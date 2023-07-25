@@ -1,11 +1,15 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import { useGetReactRepositoriesQuery } from '@/generated/graphql'
+import {
+  normalizeRepositoryData,
+  TableWithRepositories,
+} from '@/modules/repositories'
+import { Alert } from 'antd'
 
-const inter = Inter({ subsets: ['latin'] })
+export default function MainPage() {
+  const { data, loading, error } = useGetReactRepositoriesQuery()
 
-export default function Home() {
-  // const apolloData = useGetReactRepositoriesQuery()
+  const items = normalizeRepositoryData(data)
 
   return (
     <>
@@ -18,7 +22,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${inter.className}`}></main>
+      {error ? (
+        <Alert message={error.name} description={error.message} type="error" />
+      ) : (
+        <TableWithRepositories items={items} loading={loading} />
+      )}
     </>
   )
 }
