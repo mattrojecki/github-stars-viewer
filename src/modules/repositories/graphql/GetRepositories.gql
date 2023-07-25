@@ -1,7 +1,12 @@
-query GetRepositories($before: String, $after: String, $pageSize: Int) {
+query GetRepositories(
+  $query: String!
+  $before: String
+  $after: String
+  $pageSize: Int
+) {
   search(
     type: REPOSITORY
-    query: "is:public stars:>10000 topic:react"
+    query: $query
     first: $pageSize
     before: $before
     after: $after

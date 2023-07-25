@@ -29661,6 +29661,7 @@ export enum WorkflowState {
 }
 
 export type GetRepositoriesQueryVariables = Exact<{
+  query: Scalars['String']['input'];
   before?: InputMaybe<Scalars['String']['input']>;
   after?: InputMaybe<Scalars['String']['input']>;
   pageSize?: InputMaybe<Scalars['Int']['input']>;
@@ -29671,10 +29672,10 @@ export type GetRepositoriesQuery = { __typename?: 'Query', search: { __typename?
 
 
 export const GetRepositoriesDocument = gql`
-    query GetRepositories($before: String, $after: String, $pageSize: Int) {
+    query GetRepositories($query: String!, $before: String, $after: String, $pageSize: Int) {
   search(
     type: REPOSITORY
-    query: "is:public stars:>10000 topic:react"
+    query: $query
     first: $pageSize
     before: $before
     after: $after
@@ -29711,13 +29712,14 @@ export const GetRepositoriesDocument = gql`
  * @example
  * const { data, loading, error } = useGetRepositoriesQuery({
  *   variables: {
+ *      query: // value for 'query'
  *      before: // value for 'before'
  *      after: // value for 'after'
  *      pageSize: // value for 'pageSize'
  *   },
  * });
  */
-export function useGetRepositoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetRepositoriesQuery, GetRepositoriesQueryVariables>) {
+export function useGetRepositoriesQuery(baseOptions: Apollo.QueryHookOptions<GetRepositoriesQuery, GetRepositoriesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<GetRepositoriesQuery, GetRepositoriesQueryVariables>(GetRepositoriesDocument, options);
       }

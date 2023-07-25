@@ -8,8 +8,9 @@ export type CustomRepositoryItem = Pick<
 export type UseRepositoryState = {
   pageSize: number
   before?: string
-  after?: string
-  currentPage?: number
+  after: string
+  currentPage: number
+  query: string
 }
 
 export type UseRepositoryStateKey = keyof UseRepositoryState

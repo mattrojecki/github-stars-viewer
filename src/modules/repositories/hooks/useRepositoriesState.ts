@@ -1,15 +1,12 @@
-import { TableProps } from 'antd'
+import { TablePaginationConfig } from 'antd'
 import { useCallback, useState } from 'react'
 import {
-  CustomRepositoryItem,
-  UseRepositoryState,
-  UseRepositoryStateKey,
-  UseRepositoryStateType,
-} from '../types'
-
-const DEFAULT_PAGE_SIZE = 10
-const DEFAULT_CURRENT_PAGE = 1
-const DEFAULT_AFTER_VALUE = '0'
+  DEFAULT_AFTER_VALUE,
+  DEFAULT_CURRENT_PAGE,
+  DEFAULT_PAGE_SIZE,
+  DEFAULT_QUERY,
+} from '../constants'
+import { UseRepositoryState } from '../types'
 
 const getAfterValueInBase64 = (afterValue: string) =>
   Buffer.from(`cursor:${afterValue}`).toString('base64')
@@ -18,23 +15,21 @@ const initialState: UseRepositoryState = {
   pageSize: DEFAULT_PAGE_SIZE,
   currentPage: DEFAULT_CURRENT_PAGE,
   after: getAfterValueInBase64(DEFAULT_AFTER_VALUE),
+  query: DEFAULT_QUERY,
 }
 
 export const useReactRepositorieState = () => {
   const [state, setState] = useState<UseRepositoryState>(initialState)
 
-  const updateStateByKey = useCallback(
-    (key: UseRepositoryStateKey, value: UseRepositoryStateType) =>
-      setState(oldState => ({ ...oldState, [key]: value })),
+  const updateStateQuery = useCallback(
+    (value: string) => {
+      setState(oldState => ({ ...oldState, query: value || DEFAULT_QUERY }))
+    },
     [setState],
   )
 
   const updateStateAfterPageChange = useCallback(
-    (
-      params: Parameters<
-        NonNullable<TableProps<CustomRepositoryItem>['onChange']>
-      >[0],
-    ) => {
+    (params: TablePaginationConfig) => {
       const { pageSize, current } = params
       const afterValue =
         current && pageSize
@@ -46,7 +41,7 @@ export const useReactRepositorieState = () => {
         after: getAfterValueInBase64(afterValue),
         before: String(pageSize),
         pageSize: pageSize || DEFAULT_PAGE_SIZE,
-        currentPage: current,
+        currentPage: current || DEFAULT_CURRENT_PAGE,
       }))
     },
     [setState],
@@ -54,7 +49,7 @@ export const useReactRepositorieState = () => {
 
   return {
     ...state,
-    updateStateByKey,
+    updateStateQuery,
     updateStateAfterPageChange,
   }
 }
