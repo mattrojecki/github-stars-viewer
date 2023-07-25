@@ -1,14 +1,22 @@
 import Head from 'next/head'
-import { useGetReactRepositoriesQuery } from '@/generated/graphql'
+import { useGetRepositoriesQuery } from '@/generated/graphql'
 import {
   normalizeRepositoryData,
   TableWithRepositories,
+  useReactRepositorieState,
 } from '@/modules/repositories'
 import { Alert } from 'antd'
 
 export default function MainPage() {
-  const { data, loading, error } = useGetReactRepositoriesQuery()
-
+  const { before, after, pageSize, currentPage, updateStateAfterPageChange } =
+    useReactRepositorieState()
+  const { data, loading, error } = useGetRepositoriesQuery({
+    variables: {
+      before,
+      after,
+      pageSize,
+    },
+  })
   const items = normalizeRepositoryData(data)
 
   return (
@@ -25,7 +33,16 @@ export default function MainPage() {
       {error ? (
         <Alert message={error.name} description={error.message} type="error" />
       ) : (
-        <TableWithRepositories items={items} loading={loading} />
+        <TableWithRepositories
+          items={items}
+          loading={loading}
+          pagination={{
+            pageSize,
+            total: data?.search.repositoryCount,
+            current: currentPage,
+          }}
+          onChange={updateStateAfterPageChange}
+        />
       )}
     </>
   )

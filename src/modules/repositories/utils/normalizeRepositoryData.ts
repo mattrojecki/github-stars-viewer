@@ -1,8 +1,8 @@
-import { GetReactRepositoriesQuery } from '@/generated/graphql'
+import { GetRepositoriesQuery } from '@/generated/graphql'
 import { CustomRepositoryItem } from '../types'
 
 export const normalizeRepositoryData = (
-  data: GetReactRepositoriesQuery | undefined,
+  data: GetRepositoriesQuery | undefined,
 ) => {
   if (!data || !data?.search?.edges) {
     return []

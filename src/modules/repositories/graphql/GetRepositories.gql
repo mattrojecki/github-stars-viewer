@@ -1,10 +1,16 @@
-query GetReactRepositories {
+query GetRepositories($before: String, $after: String, $pageSize: Int) {
   search(
     type: REPOSITORY
     query: "is:public stars:>10000 topic:react"
-    first: 10
+    first: $pageSize
+    before: $before
+    after: $after
   ) {
     repositoryCount
+    pageInfo {
+      startCursor
+      endCursor
+    }
     edges {
       node {
         ... on Repository {

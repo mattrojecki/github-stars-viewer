@@ -29660,16 +29660,30 @@ export enum WorkflowState {
   DisabledManually = 'DISABLED_MANUALLY'
 }
 
-export type GetReactRepositoriesQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetRepositoriesQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  pageSize?: InputMaybe<Scalars['Int']['input']>;
+}>;
 
 
-export type GetReactRepositoriesQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', repositoryCount: number, edges?: Array<{ __typename?: 'SearchResultItemEdge', node?: { __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, name: string, url: any, stargazerCount: number, forkCount: number } | { __typename?: 'User' } | null } | null> | null } };
+export type GetRepositoriesQuery = { __typename?: 'Query', search: { __typename?: 'SearchResultItemConnection', repositoryCount: number, pageInfo: { __typename?: 'PageInfo', startCursor?: string | null, endCursor?: string | null }, edges?: Array<{ __typename?: 'SearchResultItemEdge', node?: { __typename?: 'App' } | { __typename?: 'Discussion' } | { __typename?: 'Issue' } | { __typename?: 'MarketplaceListing' } | { __typename?: 'Organization' } | { __typename?: 'PullRequest' } | { __typename?: 'Repository', id: string, name: string, url: any, stargazerCount: number, forkCount: number } | { __typename?: 'User' } | null } | null> | null } };
 
 
-export const GetReactRepositoriesDocument = gql`
-    query GetReactRepositories {
-  search(type: REPOSITORY, query: "is:public stars:>10000 topic:react", first: 10) {
+export const GetRepositoriesDocument = gql`
+    query GetRepositories($before: String, $after: String, $pageSize: Int) {
+  search(
+    type: REPOSITORY
+    query: "is:public stars:>10000 topic:react"
+    first: $pageSize
+    before: $before
+    after: $after
+  ) {
     repositoryCount
+    pageInfo {
+      startCursor
+      endCursor
+    }
     edges {
       node {
         ... on Repository {
@@ -29686,28 +29700,31 @@ export const GetReactRepositoriesDocument = gql`
     `;
 
 /**
- * __useGetReactRepositoriesQuery__
+ * __useGetRepositoriesQuery__
  *
- * To run a query within a React component, call `useGetReactRepositoriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetReactRepositoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetRepositoriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetRepositoriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetReactRepositoriesQuery({
+ * const { data, loading, error } = useGetRepositoriesQuery({
  *   variables: {
+ *      before: // value for 'before'
+ *      after: // value for 'after'
+ *      pageSize: // value for 'pageSize'
  *   },
  * });
  */
-export function useGetReactRepositoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetReactRepositoriesQuery, GetReactRepositoriesQueryVariables>) {
+export function useGetRepositoriesQuery(baseOptions?: Apollo.QueryHookOptions<GetRepositoriesQuery, GetRepositoriesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetReactRepositoriesQuery, GetReactRepositoriesQueryVariables>(GetReactRepositoriesDocument, options);
+        return Apollo.useQuery<GetRepositoriesQuery, GetRepositoriesQueryVariables>(GetRepositoriesDocument, options);
       }
-export function useGetReactRepositoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetReactRepositoriesQuery, GetReactRepositoriesQueryVariables>) {
+export function useGetRepositoriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetRepositoriesQuery, GetRepositoriesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetReactRepositoriesQuery, GetReactRepositoriesQueryVariables>(GetReactRepositoriesDocument, options);
+          return Apollo.useLazyQuery<GetRepositoriesQuery, GetRepositoriesQueryVariables>(GetRepositoriesDocument, options);
         }
-export type GetReactRepositoriesQueryHookResult = ReturnType<typeof useGetReactRepositoriesQuery>;
-export type GetReactRepositoriesLazyQueryHookResult = ReturnType<typeof useGetReactRepositoriesLazyQuery>;
-export type GetReactRepositoriesQueryResult = Apollo.QueryResult<GetReactRepositoriesQuery, GetReactRepositoriesQueryVariables>;
+export type GetRepositoriesQueryHookResult = ReturnType<typeof useGetRepositoriesQuery>;
+export type GetRepositoriesLazyQueryHookResult = ReturnType<typeof useGetRepositoriesLazyQuery>;
+export type GetRepositoriesQueryResult = Apollo.QueryResult<GetRepositoriesQuery, GetRepositoriesQueryVariables>;

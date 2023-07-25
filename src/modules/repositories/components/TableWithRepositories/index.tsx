@@ -1,14 +1,13 @@
 import { Table, Typography } from 'antd'
 import { ColumnsType } from 'antd/es/table'
-import { FC } from 'react'
+import { ComponentProps, FC } from 'react'
 import { CustomRepositoryItem } from '../../types'
 import { TableWrapper } from './styled'
 
 const { Link, Text } = Typography
 
-interface TableWithRepositoriesProps {
+interface TableWithRepositoriesProps extends ComponentProps<typeof Table> {
   items: CustomRepositoryItem[]
-  loading: boolean
 }
 
 const columns: ColumnsType<CustomRepositoryItem> = [
@@ -49,6 +48,8 @@ const columns: ColumnsType<CustomRepositoryItem> = [
 export const TableWithRepositories: FC<TableWithRepositoriesProps> = ({
   items,
   loading,
+  pagination,
+  onChange,
 }) => (
   <TableWrapper>
     <Table
@@ -57,6 +58,8 @@ export const TableWithRepositories: FC<TableWithRepositoriesProps> = ({
       dataSource={items}
       loading={loading}
       className={'repositories-table'}
+      pagination={pagination}
+      onChange={onChange as any}
     />
   </TableWrapper>
 )
