@@ -1,5 +1,12 @@
 {
   "compilerOptions": {
-    "types": ["cypress"]
-  }
+    "strict": true,
+    "baseUrl": "../node_modules",
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress"],
+    "resolveJsonModule": true,
+    "esModuleInterop": true
+  },
+  "include": ["./**/*.ts"]
 }
