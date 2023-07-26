@@ -1,0 +1,11 @@
+{
+  "repositoriesTable": "[data-testid=repositories-table]",
+  "repositoriesTableRows": "tbody tr",
+  "repositoriesTableLink": "a",
+  "mostStarsItem": "freeCodeCamp",
+  "searchRepositoriesInput": "[data-testid=search-repositories-input]",
+  "searchRepositoriesInputValue": "is:public stars:>10000 topic:testing",
+  "searchRepositoriesValueToFindInTable": "cypress",
+  "nextPageButton": ".ant-pagination li[title='Next Page']",
+  "nextPageValueToFindInTable": "meteor"
+}

@@ -33,7 +33,7 @@ To run production version locally, run:
 npm run build && npm run start
 ```
 
-Docker automatically serves build in production mode.
+Docker automatically serves build in production mode but runs unit/integration tests and e2e tests - if at least one of them fail, image won't be created.
 
 ## Running unit / integration tests
 
@@ -47,6 +47,20 @@ To check coverage, type:
 
 ```bash
 npm run test:coverage
+```
+
+## Running e2e tests
+
+To run e2e tests with visual helper, type:
+
+```bash
+npm run cypress
+```
+
+To run e2e tests in headless mode, run:
+
+```bash
+npm run cypress:headless
 ```
 
 ## About project

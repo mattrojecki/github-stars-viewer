@@ -10,6 +10,9 @@
     "test": "jest --watchAll",
     "test:ci": "jest --ci --coverage",
     "test:coverage": "jest --coverage",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run",
+    "cypress:ci": "start-server-and-test start http://localhost:3000 cypress:headless",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write",
     "lint-staged": "lint-staged",
     "prepare-husky": "husky install",
@@ -41,6 +44,7 @@
     "@types/node": "20.4.4",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "cypress": "^12.17.2",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.12",
     "eslint-config-prettier": "^8.8.0",
@@ -51,6 +55,7 @@
     "jest-environment-jsdom": "^29.6.1",
     "lint-staged": "^13.2.3",
     "prettier": "^3.0.0",
+    "start-server-and-test": "^2.0.0",
     "typescript": "5.1.6"
   }
 }
