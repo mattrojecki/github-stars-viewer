@@ -7,14 +7,12 @@ import {
   DEFAULT_QUERY,
 } from '../constants'
 import { UseRepositoryState } from '../types'
-
-const getAfterValueInBase64 = (afterValue: string) =>
-  Buffer.from(`cursor:${afterValue}`).toString('base64')
+import { getValueForCursorInBase64 } from '../utils'
 
 const initialState: UseRepositoryState = {
   pageSize: DEFAULT_PAGE_SIZE,
   currentPage: DEFAULT_CURRENT_PAGE,
-  after: getAfterValueInBase64(DEFAULT_AFTER_VALUE),
+  after: getValueForCursorInBase64(DEFAULT_AFTER_VALUE),
   query: DEFAULT_QUERY,
 }
 
@@ -38,7 +36,7 @@ export const useReactRepositorieState = () => {
 
       setState(oldState => ({
         ...oldState,
-        after: getAfterValueInBase64(afterValue),
+        after: getValueForCursorInBase64(afterValue),
         before: String(pageSize),
         pageSize: pageSize || DEFAULT_PAGE_SIZE,
         currentPage: current || DEFAULT_CURRENT_PAGE,

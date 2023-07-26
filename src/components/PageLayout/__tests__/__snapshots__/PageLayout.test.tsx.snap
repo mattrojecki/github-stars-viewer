@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PageLayout renders component unchanged with children 1`] = `
+<div>
+  <section
+    class="ant-layout css-dev-only-do-not-override-txh9fw"
+  >
+    <header
+      class="ant-layout-header css-dev-only-do-not-override-txh9fw"
+    >
+      <h1
+        class="css-ote8d8"
+      >
+        ⭐ Github Stars Viewer ⭐
+      </h1>
+    </header>
+    <main
+      class="ant-layout-content css-dev-only-do-not-override-txh9fw"
+    >
+      <div
+        class="css-d3x6o2"
+      >
+        <div>
+          Test
+        </div>
+      </div>
+    </main>
+    <footer
+      class="ant-layout-footer css-dev-only-do-not-override-txh9fw"
+    >
+      <div
+        class="css-1q2lbmy"
+      >
+        <span
+          class="ant-typography css-dev-only-do-not-override-txh9fw"
+        >
+          Mateusz Rojecki © 2023
+        </span>
+      </div>
+    </footer>
+  </section>
+</div>
+`;
+
+exports[`PageLayout renders component unchanged without children 1`] = `
+<div>
+  <section
+    class="ant-layout css-dev-only-do-not-override-txh9fw"
+  >
+    <header
+      class="ant-layout-header css-dev-only-do-not-override-txh9fw"
+    >
+      <h1
+        class="css-ote8d8"
+      >
+        ⭐ Github Stars Viewer ⭐
+      </h1>
+    </header>
+    <main
+      class="ant-layout-content css-dev-only-do-not-override-txh9fw"
+    >
+      <div
+        class="css-d3x6o2"
+      />
+    </main>
+    <footer
+      class="ant-layout-footer css-dev-only-do-not-override-txh9fw"
+    >
+      <div
+        class="css-1q2lbmy"
+      >
+        <span
+          class="ant-typography css-dev-only-do-not-override-txh9fw"
+        >
+          Mateusz Rojecki © 2023
+        </span>
+      </div>
+    </footer>
+  </section>
+</div>
+`;

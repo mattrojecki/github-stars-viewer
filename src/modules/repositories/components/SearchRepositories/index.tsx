@@ -30,6 +30,7 @@ export const SearchRepositories: FC<SearchRepositoriesProps> = ({
       placeholder={`Type search query like: ${DEFAULT_QUERY}`}
       onChange={handleSearch}
       allowClear
+      data-testid="search-repositories-input"
     />
   )
 }

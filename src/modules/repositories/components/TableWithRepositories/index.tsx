@@ -6,7 +6,7 @@ import { TableWrapper } from './styled'
 
 const { Link, Text } = Typography
 
-const columns: ColumnsType<CustomRepositoryItem> = [
+export const columns: ColumnsType<CustomRepositoryItem> = [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -49,6 +49,7 @@ export const TableWithRepositories: FC<TableProps<CustomRepositoryItem>> = ({
       rowKey={'id'}
       columns={columns}
       className={'repositories-table'}
+      data-testid="repositories-table"
       {...rest}
     />
   </TableWrapper>

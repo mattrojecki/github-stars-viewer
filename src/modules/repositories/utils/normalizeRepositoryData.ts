@@ -8,7 +8,11 @@ export const normalizeRepositoryData = (
     return []
   }
 
-  return data.search.edges
-    .filter(elem => elem?.node && elem?.node?.__typename === 'Repository')
+  const newData = data.search.edges
+    .filter((elem, index) => {
+      return elem?.node && elem?.node?.__typename === 'Repository'
+    })
     .map(elem => elem!.node as CustomRepositoryItem)
+
+  return newData
 }
