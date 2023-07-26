@@ -13,12 +13,14 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED 1
 
+RUN npm install -D @next/swc-linux-arm64-gnu
 RUN npm run build
+RUN npm run test:ci
 
 FROM node:18-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV development
+ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN addgroup --system --gid 1001 nodejs
@@ -34,4 +36,4 @@ EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["npm", "run", "dev"]
+CMD ["npm", "start"]

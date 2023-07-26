@@ -1,6 +1,6 @@
 # GitHub Stars Viewer
 
-## Getting Started - Development
+## Getting Started
 
 You have two options to start app. You can use it locally or with Docker.
 If you are running app locally, first install dependencies:
@@ -17,10 +17,10 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-If you want to use docker (in Next's development mode), you can run proper command:
+If you want to use docker (production build), you can run proper command:
 
 ```bash
-npm run docker-start-dev
+npm run docker-start
 ```
 
 App will be also available on [http://localhost:3000](http://localhost:3000).
@@ -33,17 +33,7 @@ To run production version locally, run:
 npm run build && npm run start
 ```
 
-If you want to use docker for production version, change all occurances of:
-
-```bash
-npm run dev
-```
-
-to:
-
-```bash
-npm start
-```
+Docker automatically serves build in production mode.
 
 ## Running unit / integration tests
 

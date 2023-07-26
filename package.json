@@ -8,14 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watchAll",
-    "test:ci": "jest --ci",
+    "test:ci": "jest --ci --coverage",
     "test:coverage": "jest --coverage",
     "prettier-format": "prettier --config .prettierrc 'src/**/*.{ts,tsx}' --write",
     "lint-staged": "lint-staged",
     "prepare-husky": "husky install",
     "docker-clean-up": "docker compose --env-file ./.env -f ./docker-compose.yaml down -v && docker image rm github-stars-viewer:dev",
-    "docker-start-dev": "docker compose --env-file ./.env -f ./docker-compose.yaml up --build",
-    "docker-reload": "npm run docker-clean-up && npm run docker-start-dev",
+    "docker-start": "docker compose --env-file ./.env -f ./docker-compose.yaml up --build",
+    "docker-reload": "npm run docker-clean-up && npm run docker-start",
     "graphql-codegen": "graphql-codegen --config graphql-codegen.ts"
   },
   "dependencies": {
