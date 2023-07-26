@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
-import MainPage from '../index'
+import MainPage from '../pages/index'
 import {
   mockGetRepositoriesSuccessfulRequest1stPage,
   mockGetRepositoriesSuccessfulRequest2ndPage,
