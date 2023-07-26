@@ -6,8 +6,8 @@ services:
     build:
       context: ./
       target: runner
-    container_name: next-app-dev
-    image: github-stars-viewer:dev
+    container_name: next-app-prod
+    image: github-stars-viewer:prod
     volumes:
       - .:/app
     command: npm start
